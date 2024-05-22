@@ -3,8 +3,13 @@
 {% block title %}Home{% endblock %}
 {% block content %}
     <h1>Welcome to the Bookstore</h1>
-    <p>
-        This is a simple bookstore application built with Django.
-    </p>
+    {% if user.is_authenticated %}
+        Hi {{ user.email }}!
+    {% else %}
+        <p>
+            You are not logged in.
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+    {% endif %}
 
 {% endblock %}
